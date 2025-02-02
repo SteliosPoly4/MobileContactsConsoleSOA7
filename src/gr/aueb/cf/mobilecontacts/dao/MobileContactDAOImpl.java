@@ -1,15 +1,13 @@
 package gr.aueb.cf.mobilecontacts.dao;
 
-
 import gr.aueb.cf.mobilecontacts.model.MobileContact;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MobileContactDAOImpl implements IMobileContactDAO{
+public class MobileContactDAOImpl implements IMobileContactDAO {
     private static final List<MobileContact> contacts = new ArrayList<>();
     private static Long id = 1L;
-
 
     @Override
     public MobileContact insert(MobileContact mobileContact) {
@@ -26,7 +24,8 @@ public class MobileContactDAOImpl implements IMobileContactDAO{
 
     @Override
     public void deleteById(Long id) {
-        contacts.removeIf(contact ->contact.getId().equals(id));
+        // contacts.remove(getIndexById(id));
+        contacts.removeIf(contact -> contact.getId().equals(id));
     }
 
     @Override
@@ -42,7 +41,7 @@ public class MobileContactDAOImpl implements IMobileContactDAO{
 
     @Override
     public void deleteByPhoneNumber(String phoneNumber) {
-        contacts.removeIf(contact ->contact.getPhoneNumber().equals(phoneNumber));
+        contacts.removeIf(contact -> contact.getPhoneNumber().equals(phoneNumber));
     }
 
     @Override
@@ -59,13 +58,14 @@ public class MobileContactDAOImpl implements IMobileContactDAO{
 
     @Override
     public boolean phoneNumberExists(String phoneNumber) {
-        return false;
+        int position = getIndexByPhoneNumber(phoneNumber);
+        return position != -1;
     }
 
     private int getIndexById(Long id) {
         int positionToReturn = -1;
 
-        for (int i = 0; i < contacts.size(); i++ ) {
+        for (int i = 0; i < contacts.size(); i++) {
             if (contacts.get(i).getId().equals(id)) {
                 positionToReturn = i;
                 break;
@@ -77,7 +77,7 @@ public class MobileContactDAOImpl implements IMobileContactDAO{
     private int getIndexByPhoneNumber(String phoneNumber) {
         int positionToReturn = -1;
 
-        for (int i = 0; i < contacts.size(); i++ ) {
+        for (int i = 0; i < contacts.size(); i++) {
             if (contacts.get(i).getPhoneNumber().equals(phoneNumber)) {
                 positionToReturn = i;
                 break;
@@ -85,6 +85,4 @@ public class MobileContactDAOImpl implements IMobileContactDAO{
         }
         return positionToReturn;
     }
-
 }
-

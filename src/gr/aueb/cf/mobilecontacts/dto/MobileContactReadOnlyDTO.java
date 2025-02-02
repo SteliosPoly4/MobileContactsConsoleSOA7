@@ -1,6 +1,6 @@
 package gr.aueb.cf.mobilecontacts.dto;
 
-public class MobileContactReadOnlyDTO extends BaseDTO{
+public class MobileContactReadOnlyDTO extends BaseDTO {
     private String firstname;
     private String lastname;
     private String phoneNumber;

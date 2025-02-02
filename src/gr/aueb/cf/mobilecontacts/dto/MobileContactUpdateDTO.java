@@ -40,4 +40,3 @@ public class MobileContactUpdateDTO extends BaseDTO {
         this.phoneNumber = phoneNumber;
     }
 }
-
